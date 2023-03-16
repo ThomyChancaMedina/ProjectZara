@@ -2,7 +2,6 @@ package com.example.projeczara.data.server
 
 
 import com.example.projeczara.data.database.toDomainDataBase
-import com.example.projeczara.data.database.toRoomCharacter
 import com.example.projeczara.data.domain.Character
 import com.example.projeczara.data.database.character.Character as DBCharacter
 import com.example.projeczara.data.server.model.Character as ServerCharacter

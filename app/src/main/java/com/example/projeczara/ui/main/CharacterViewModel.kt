@@ -4,11 +4,14 @@ import androidx.lifecycle.*
 import com.example.projeczara.data.domain.Character
 import com.example.projeczara.usescase.GetCharacterUseCase
 import com.example.projeczara.usescase.RequestCharactersUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CharacterViewModel(
+@HiltViewModel
+class CharacterViewModel @Inject constructor(
     private val getCharacterUseCase: GetCharacterUseCase,
     private val requestCharactersUseCase: RequestCharactersUseCase
 ) : ViewModel() {
@@ -37,14 +40,4 @@ class CharacterViewModel(
         val character: List<Character>? = null,
         val error: Error? = null
     )
-}
-
-@Suppress("UNCHECKED_CAST")
-class CharacterViewModelFactory(
-    private val getCharacterUseCase: GetCharacterUseCase,
-    private val requestCharactersUseCase: RequestCharactersUseCase
-) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CharacterViewModel(getCharacterUseCase, requestCharactersUseCase) as T
-    }
 }

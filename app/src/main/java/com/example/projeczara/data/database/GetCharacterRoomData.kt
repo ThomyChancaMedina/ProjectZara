@@ -8,8 +8,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class GetCharacterRoomData(
+class GetCharacterRoomData @Inject constructor(
     private val characterDao: CharacterDao
 ) : GetCharacterRoomDataSource {
     override val characters: Flow<List<Character>> = characterDao.getCharacters().map { it.toDomainCharacter() }

@@ -4,8 +4,9 @@ import com.example.projeczara.data.domain.Character
 import com.example.projeczara.datasource.GetCharacterRemoteSource
 import com.example.projeczara.datasource.GetCharacterRoomDataSource
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class CharacterRepository(
+class CharacterRepository @Inject constructor(
     private val getCharacterRoomDataSource: GetCharacterRoomDataSource,
     private val getCharacterRemoteSource: GetCharacterRemoteSource
 ) {

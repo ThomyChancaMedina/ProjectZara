@@ -11,31 +11,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
-import com.example.projeczara.data.CharacterRepository
-import com.example.projeczara.data.database.GetCharacterRoomData
 import com.example.projeczara.data.domain.Character
-import com.example.projeczara.data.server.GetCharacterRemote
-import com.example.projeczara.data.server.RetrofitServer
-import com.example.projeczara.ui.common.app
-import com.example.projeczara.usescase.FindItemCharacterUseCase
 
 @Composable
-fun DetailScreenContent(param: Int?) {
+fun DetailScreenContent(viewModel: DetailViewModel = hiltViewModel(), param: Int?) {
 
-    val repository = CharacterRepository(
-        GetCharacterRoomData(LocalContext.current.app.db.characterDao()),
-        GetCharacterRemote(RetrofitServer())
-    )
-    val detailViewModelFactory = DetailViewModelFactory(
-        param!!,
-        FindItemCharacterUseCase(repository)
-    )
-
-    val viewModel: DetailViewModel = viewModel(factory = detailViewModelFactory)
+    viewModel.fidCharacterForId(param!!)
 
     val itemData by viewModel.itemCharacter.collectAsState()
 
