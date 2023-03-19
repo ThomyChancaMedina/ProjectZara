@@ -13,7 +13,7 @@ import javax.inject.Inject
 class GetCharacterRoomData @Inject constructor(
     private val characterDao: CharacterDao
 ) : GetCharacterRoomDataSource {
-    override val characters: Flow<List<Character>> = characterDao.getCharacters().map { it.toDomainCharacter() }
+    override var characters: Flow<List<Character>> = characterDao.getCharacters().map { it.toDomainCharacter() }
 
     override suspend fun isEmpty(): Boolean =
         withContext(Dispatchers.IO) { characterDao.characterCount() <= 0 }

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface GetCharacterRoomDataSource {
 
-    val characters: Flow<List<Character>>
+    var characters: Flow<List<Character>>
 
     suspend fun isEmpty(): Boolean
     fun findById(id: Int): Flow<Character>
